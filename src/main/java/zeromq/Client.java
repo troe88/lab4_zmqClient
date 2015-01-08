@@ -19,7 +19,6 @@ public class Client extends Thread {
 	Sender sender;
 	Receiver receiver;
 
-	private final static Scanner in = new Scanner(System.in);
 
 	static class Sender extends Thread {
 		private final String name;
