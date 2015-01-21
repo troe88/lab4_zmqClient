@@ -1,8 +1,5 @@
 package zeromq;
 
-import java.text.Normalizer.Form;
-import java.util.Scanner;
-
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQ.Context;
 import org.zeromq.ZMQ.Socket;
@@ -31,7 +28,7 @@ public class Client extends Thread {
 		}
 
 		public void send() {
-			String messageToSend = ClientForm.str;// in.nextLine();
+			String messageToSend = ClientForm.str;
 			send.send(name + ": " + messageToSend);
 		}
 
@@ -41,7 +38,12 @@ public class Client extends Thread {
 
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
-
+				try {
+					sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -94,12 +96,12 @@ public class Client extends Thread {
 		name = new String(n);
 		try {
 			sender = new Sender(name, send);
-			sender.start();
+			//sender.start();
 
 			receiver = new Receiver(poller, receive);
 			receiver.start();
 
-			sender.join();
+			//sender.join();
 			receiver.join();
 		} catch (InterruptedException e) {
 		} finally {
@@ -113,12 +115,12 @@ public class Client extends Thread {
 	public void send() {
 		try {
 			Sender sender = new Sender(name, send);
-			sender.start();
+			//sender.start();
 
 			Receiver receiver = new Receiver(poller, receive);
 			receiver.start();
 
-			sender.join();
+			//sender.join();
 			receiver.join();
 		} catch (InterruptedException e) {
 		} finally {

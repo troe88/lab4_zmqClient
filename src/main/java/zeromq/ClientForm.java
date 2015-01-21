@@ -152,6 +152,7 @@ public class ClientForm {
 		printHelp();
 	}
 
+	@SuppressWarnings("serial")
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");
